@@ -49,15 +49,13 @@ public class Agente2 extends Agent {
                 }
             } else {
                 if (idC.equalsIgnoreCase("COD0302")) {
-                    String humedadHoja = msj.getContent();
-                    if (humedadHoja.equalsIgnoreCase("alta")) {
-                        System.out.println("No regar");
-
-                    } else {
-                        System.out.println("Regar");
-
+                    System.out.println(msj);
+                    try {
+                        msj.getContentObject();
+                    } catch (UnreadableException e) {
+                        throw new RuntimeException(e);
                     }
-                    Mensajes.enviar(ACLMessage.INFORM, "Ag3", "Estado de riego", "COD0203", getAgent());
+                    //Mensajes.enviar(ACLMessage.INFORM, "Ag3", "Estado de riego", "COD0203", getAgent());
                 }
             }
 

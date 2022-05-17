@@ -5,6 +5,8 @@
 package agentes;
 
 import agentesc.Contenedor;
+import contenidoSerializado.Pagos;
+import contenidoSerializado.Ventas;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
@@ -35,7 +37,10 @@ public class Agente3 extends Agent {
         @Override
         public void action() {
             System.out.println(getName());
-
+            Object[] pagosVentas = new Object[]{new Pagos(1, 1, 100, "2022-10-10")};
+                new Ventas(1,1,20221,100,true,"2022-10-10","Producto 1 Descripcion");
+            Pagos pagos = new Pagos(D_MIN,D_MIN,D_MIN,STATE_READY);
+            Mensajes.enviarS(ACLMessage.INFORM, "Unirinformacion", pagosVentas, "COD0302", getAgent());
             //terminado = true;//depende lo q necesites
             //doDelete();
             //sensor de temperatura ...........
