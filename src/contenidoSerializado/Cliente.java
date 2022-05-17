@@ -1,12 +1,17 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package contenidoSerializado;
 
 import java.io.Serializable;
-
-public class Cliente implements Serializable {
+public class Cliente implements Serializable{
     private String nombre, apellido, direccion, telefono, correo, ciudad, pais;
-    private int id, idVendedor, zipcode, plazo;
+    private int ID, edad, idVendedor, zipcode, plazo;
     private double monto;
-    public Cliente(String nombre, String apellido, String direccion, String telefono, String correo, String ciudad, String pais, int id, int idVendedor, int zipcode, int plazo, double monto) {
+
+    public Cliente(String nombre, String apellido, String direccion, String telefono, String correo, String ciudad, String pais, int ID, int edad, int idVendedor, int zipcode, int plazo, double monto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
@@ -14,14 +19,15 @@ public class Cliente implements Serializable {
         this.correo = correo;
         this.ciudad = ciudad;
         this.pais = pais;
-        this.id = id;
+        this.ID = ID;
+        this.edad = edad;
         this.idVendedor = idVendedor;
         this.zipcode = zipcode;
         this.plazo = plazo;
         this.monto = monto;
     }
-
-
+    
+    
 
     public String getNombre() {
         return nombre;
@@ -79,12 +85,20 @@ public class Cliente implements Serializable {
         this.pais = pais;
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public int getIdVendedor() {
@@ -121,8 +135,8 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente:" + "ID:" + id + "Cliente:"+nombre+" "+ apellido;
+        return "Cliente: ID: "+ID+" "+nombre+" "+apellido;
     }
+    
+    
 }
-
-

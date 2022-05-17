@@ -1,32 +1,27 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package contenidoSerializado;
-
 import java.io.Serializable;
 
-public class Ventas implements Serializable {
-    private int idCliente, idVenta, numerofactura;
+public class Ventas implements Serializable{
+    private int idVenta, idCliente;
     private double valor;
-    private boolean isIval; //1.12
-    private String fecha, description;
+    private boolean isIva;//1.12
+    private String fecha, descripcionProducto;
 
-    public Ventas(){
-    }
-
-    public Ventas(int idVenta, int idCliente, int numerofactura, double valor, boolean isIval, String fecha, String description) {
-        this.idCliente = idCliente;
+    public Ventas(int idVenta, int idCliente, double valor, boolean isIva, String fecha, String descripcionProducto) {
         this.idVenta = idVenta;
-        this.numerofactura = numerofactura;
-        this.valor = valor;
-        this.isIval = isIval;
-        this.fecha = fecha;
-        this.description = description;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
+        this.valor = valor;
+        this.isIva = isIva;
+        this.fecha = fecha;
+        this.descripcionProducto = descripcionProducto;
+    }
+
+    public Ventas() {
     }
 
     public int getIdVenta() {
@@ -37,12 +32,12 @@ public class Ventas implements Serializable {
         this.idVenta = idVenta;
     }
 
-    public int getNumerofactura() {
-        return numerofactura;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setNumerofactura(int numerofactura) {
-        this.numerofactura = numerofactura;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public double getValor() {
@@ -53,12 +48,12 @@ public class Ventas implements Serializable {
         this.valor = valor;
     }
 
-    public boolean isIval() {
-        return isIval;
+    public boolean isIsIva() {
+        return isIva;
     }
 
-    public void setIval(boolean ival) {
-        isIval = ival;
+    public void setIsIva(boolean isIva) {
+        this.isIva = isIva;
     }
 
     public String getFecha() {
@@ -69,12 +64,18 @@ public class Ventas implements Serializable {
         this.fecha = fecha;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescripcionProducto() {
+        return descripcionProducto;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescripcionProducto(String descripcionProducto) {
+        this.descripcionProducto = descripcionProducto;
     }
 
+    @Override
+    public String toString() {
+        return "Ventas{" + "idVenta=" + idVenta + ", idCliente=" + idCliente + ", valor=" + valor + ", isIva=" + isIva + ", fecha=" + fecha + ", descripcionProducto=" + descripcionProducto + '}';
+    }
+    
+    
 }

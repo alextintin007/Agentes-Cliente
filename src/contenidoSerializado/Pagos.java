@@ -1,16 +1,27 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package contenidoSerializado;
 
-public class Pagos {
+import java.io.Serializable;
+public class Pagos implements Serializable{
     private int idPago, idCliente;
-    private double valor;
+    private double valorPago;
     private String fecha;
 
-    public Pagos(int idPago, int idCliente, double valor, String fecha) {
+    public Pagos(int idPago, int idCliente, double valorPago, String fecha) {
         this.idPago = idPago;
         this.idCliente = idCliente;
-        this.valor = valor;
+        this.valorPago = valorPago;
         this.fecha = fecha;
     }
+
+    public Pagos() {
+    }
+    
+    
 
     public int getIdPago() {
         return idPago;
@@ -28,12 +39,12 @@ public class Pagos {
         this.idCliente = idCliente;
     }
 
-    public double getValor() {
-        return valor;
+    public double getValorPago() {
+        return valorPago;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setValorPago(double valorPago) {
+        this.valorPago = valorPago;
     }
 
     public String getFecha() {
@@ -43,4 +54,11 @@ public class Pagos {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    @Override
+    public String toString() {
+        return "Pagos{" + "idPago=" + idPago + ", idCliente=" + idCliente + ", valorPago=" + valorPago + ", fecha=" + fecha + '}';
+    }
+    
+    
 }
