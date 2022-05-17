@@ -1,67 +1,71 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package agentes;
-
-import contenidoSerializado.Cliente;
-import contenidoSerializado.Sensores;
+import contenidoSerializado.*;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-/**
- *
- * @author Surface
- */
-public class Agente2 extends Agent {
-
+public class Agente2 extends Agent{
+    private String h[]={"",""};
     @Override
-    protected void setup() {
+    protected void setup(){
         addBehaviour(new Comportamiento());
     }
-
-    class Comportamiento extends CyclicBehaviour {
-
+    class Comportamiento extends CyclicBehaviour{
         @Override
         public void action() {
-            System.out.println(getName());
-            ACLMessage msj = blockingReceive();
-
-            String idC = msj.getConversationId();
-
-            if (idC.equalsIgnoreCase("COD0102")) {
+            
+            
+                System.out.println(getName());
+                ACLMessage msj = blockingReceive();
+                String idC = msj.getConversationId();
+                if(idC.equalsIgnoreCase("COD0102")){
                 try {
-                    System.out.println(msj);
-                    Cliente cliente = (Cliente) msj.getContentObject();
+                    Cliente cliente = (Cliente)msj.getContentObject();
                     System.out.println(cliente);
-                    //String temperatura = msj.getContent();
-                    //if (Integer.parseInt(temperatura) > 35) {
-                    //   System.out.println("Prendiendo ventiladores");
-                    //    //.............
-                    //    Mensajes.enviar(ACLMessage.INFORM, "ReceptorInfo", "Ventilador prendido", "COD0201", getAgent());
-                    //}
-                } catch (UnreadableException ex) {
-                    Logger.getLogger(Agente2.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                if (idC.equalsIgnoreCase("COD0302")) {
-                    System.out.println(msj);
-                    try {
-                        msj.getContentObject();
-                    } catch (UnreadableException e) {
-                        throw new RuntimeException(e);
-                    }
-                    //Mensajes.enviar(ACLMessage.INFORM, "Ag3", "Estado de riego", "COD0203", getAgent());
-                }
+                    } catch (UnreadableException ex) {
+                Logger.getLogger(Agente2.class.getName()).log(Level.SEVERE, null, ex);
             }
+                }
+                /*
+                    int temperatura = s.getTemperatura();
+                    if(temperatura>35){
+                        Mensajes.enviar(ACLMessage.INFORM, "ReceptorInfo", "Encendiendo ventiladores", "COD0102", getAgent());
+                    }
+                    if(h[1]=="")h[0]=""+temperatura;
+                }*/
+                if(idC.equalsIgnoreCase("COD0302")){
+                    try{
+                        Object[] pagosVentas = (Object[])msj.getContentObject();
+                        System.out.println(pagosVentas.length);
+                        Pagos pago = (Pagos)pagosVentas[0];
+                        Ventas venta = (Ventas)pagosVentas[1];
+                        System.out.println(venta);
+                        System.out.println(pago);
+                    }catch (UnreadableException ex) {
+                        Logger.getLogger(Agente2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    /*String humedad = msj.getContent();
+                    if(msj.getContent().equalsIgnoreCase("alta")){
+                        Mensajes.enviar(ACLMessage.INFORM, "Ag3", "Regar", "COD0302", getAgent());
+                    }else{
+                        Mensajes.enviar(ACLMessage.INFORM, "Ag3", "No regar", "COD0302", getAgent());
+                    }
+                    if(h[1]=="") h[1]=humedad;
+                }
+                if(h[0]!="" & h[1]!=""){
+                    Mensajes.enviar(ACLMessage.INFORM, "Ag4", "Temperatura: "+h[0]+" Humedad: "+h[1], "COD0402", getAgent());
+                    //h[0]=h[1]="";
+*/
+                }
 
-            //System.out.println(msj.getConversationId());
+            
         }
-
     }
-
 }
